@@ -32,6 +32,14 @@ app.get('/api/:date', (req, res, next) => {
   res.json({ "unix": req.unix, "utc": req.utc });
 });
 
+app.get('/api', (req, res, next) => {
+  req.unix = Date.parse();
+  
+  next();
+}, (req, res) => {
+  res.json({ "unix": req.unix, "utc": req.utc });
+});
+
 // listen for requests :)
 app.listen(process.env.PORT || 3000, () => console.log("Listening on 3000"))
 

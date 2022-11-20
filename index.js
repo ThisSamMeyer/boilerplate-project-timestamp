@@ -33,8 +33,8 @@ app.get('/api/:date', (req, res, next) => {
 });
 
 app.get('/api', (req, res, next) => {
-  req.unix = Date.parse();
-  
+  req.utc = new Date().toUTCString();
+  req.unix = Date.parse(req.utc);
   next();
 }, (req, res) => {
   res.json({ "unix": req.unix, "utc": req.utc });
